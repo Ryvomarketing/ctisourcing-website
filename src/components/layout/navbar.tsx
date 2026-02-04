@@ -68,9 +68,9 @@ export function Navbar() {
               className="relative z-10 group"
               aria-label="CTI Sourcing - Home"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 {/* Honeycomb Icon */}
-                <div className="relative w-10 h-10">
+                <div className="relative w-14 h-14">
                   <svg
                     viewBox="0 0 40 40"
                     fill="none"
@@ -96,10 +96,10 @@ export function Navbar() {
                   </svg>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-serif text-xl tracking-wide text-cream">
+                  <span className="font-serif text-3xl tracking-wide text-cream">
                     CTI
                   </span>
-                  <span className="text-[10px] tracking-[0.3em] text-gold uppercase -mt-1">
+                  <span className="text-sm tracking-[0.3em] text-gold uppercase -mt-1">
                     Sourcing
                   </span>
                 </div>
@@ -112,7 +112,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-sm tracking-wide transition-colors duration-300 ${
+                  className={`relative text-lg tracking-wide transition-colors duration-300 ${
                     isActive(link.href)
                       ? "text-gold font-medium"
                       : "text-cream/80 hover:text-cream link-underline"
@@ -131,7 +131,7 @@ export function Navbar() {
             <div className="hidden md:block">
               <Button
                 onClick={openModal}
-                className="bg-gold hover:bg-gold-light text-black font-medium px-6 py-2 text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
+                className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-3 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
               >
                 Get a Quote
               </Button>
