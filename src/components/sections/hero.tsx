@@ -42,7 +42,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-6"
         >
-          <span className="inline-block px-4 py-2 border border-gold/30 rounded-full text-gold text-xs tracking-[0.2em] uppercase">
+          <span className="inline-block px-6 py-3 bg-black/60 backdrop-blur-sm border border-gold/40 rounded-full text-gold text-sm sm:text-base font-medium tracking-[0.15em] uppercase">
             Exclusive US Partner of QVC Africa
           </span>
         </motion.div>

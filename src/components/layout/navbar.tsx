@@ -61,7 +61,7 @@ export function Navbar() {
           role="navigation"
           aria-label="Main navigation"
         >
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-24 mt-2">
             {/* Logo */}
             <Link
               href="/"
