@@ -15,11 +15,11 @@ export function ProductsHero() {
           style={{
             backgroundImage: `
               linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.95)),
-              url('https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?q=80&w=2070&auto=format&fit=crop')
+              url('https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=2070&auto=format&fit=crop')
             `,
           }}
           role="img"
-          aria-label="Honeycomb close-up"
+          aria-label="Natural beeswax blocks"
         />
         <div className="absolute inset-0 honeycomb-pattern opacity-20" />
       </div>
