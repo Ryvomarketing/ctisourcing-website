@@ -21,7 +21,7 @@ const leadership = [
     location: "United States",
     education: "Master's in Marketing, Florida International University",
     description:
-      "Leads U.S.-based operations, managing client relationships, logistics, market development, and strategic partnerships. His role ensures that American buyers receive the reliability, responsiveness, and service quality expected from a domestic supplier, while maintaining a seamless international supply chain.",
+      "Leads U.S.-based operations, managing client relationships, logistics, market development, and strategic partnerships. Roger ensures that American buyers receive the reliability, responsiveness, and service quality expected from a domestic supplier, while maintaining a seamless international supply chain.",
     additionalInfo:
       "With over 10 years of experience in wealth management—commercializing products and building strong relationships with investors and investment firms—Roger brings a unique perspective to market expansion, client trust, and long-term partnership development. His leadership helps ensure smooth operations and efficient product delivery across North American markets.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop",
