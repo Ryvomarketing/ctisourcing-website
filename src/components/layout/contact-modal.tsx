@@ -408,7 +408,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           <SelectTrigger className="bg-white/5 border-gold/20 text-cream focus:border-gold">
                             <SelectValue placeholder="Select product" />
                           </SelectTrigger>
-                          <SelectContent className="bg-black border-gold/20">
+                          <SelectContent className="bg-black border-gold/20 z-[200]">
                             <SelectItem value="beeswax">
                               Beeswax
                             </SelectItem>
@@ -440,7 +440,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           <SelectTrigger className="bg-white/5 border-gold/20 text-cream focus:border-gold">
                             <SelectValue placeholder="Select volume" />
                           </SelectTrigger>
-                          <SelectContent className="bg-black border-gold/20">
+                          <SelectContent className="bg-black border-gold/20 z-[200]">
                             <SelectItem value="under-500kg">Under 500kg</SelectItem>
                             <SelectItem value="500kg-1mt">500kg - 1 MT</SelectItem>
                             <SelectItem value="1mt-5mt">1 - 5 MT</SelectItem>
