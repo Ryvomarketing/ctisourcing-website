@@ -21,7 +21,7 @@ const beeswaxData = {
     "Melting Point": "61-65°C (142-149°F)",
     Appearance: "Solid, yellow to golden",
     Certifications: "USDA/NOP, EU Organic",
-    "Available Formats": "Blocks, slabs, pastilles",
+    "Available Formats": "Blocks",
     Origin: "Tanzania (Nyahua Forest Reserve)",
   },
   applications: [

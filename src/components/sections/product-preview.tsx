@@ -8,7 +8,7 @@ const products = [
   {
     title: "Beeswax",
     description:
-      "Premium organic beeswax sourced from Tanzania's Nyahua Forest Reserve. Available in blocks, slabs, and pastilles.",
+      "Premium organic beeswax sourced from Tanzania's Nyahua Forest Reserve. Available in blocks for bulk orders.",
     specs: ["Melting Point: 61-65°C", "CAS: 8012-89-3", "Bulk Available"],
     image: "/images/raw beeswax.png",
     href: "/products#beeswax",

@@ -30,19 +30,10 @@ export function ProductsHero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-block px-6 py-3 bg-black/60 backdrop-blur-sm border border-gold/40 rounded-full text-gold text-sm sm:text-base font-medium tracking-[0.15em] uppercase mb-6"
-        >
-          Premium African Bee Products
-        </motion.span>
-
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
           className="font-serif text-4xl sm:text-5xl lg:text-6xl text-cream mb-6"
         >
           Our Products
@@ -51,18 +42,27 @@ export function ProductsHero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="text-cream/70 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed"
         >
           Premium organic products. Bulk quantities. Full documentation
           and traceability with every order.
         </motion.p>
 
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="inline-block mt-6 text-gold/60 text-xs sm:text-sm tracking-[0.2em] uppercase"
+        >
+          Premium African Bee Products
+        </motion.span>
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="section-divider mx-auto mt-8"
+          className="section-divider mx-auto mt-6"
         />
       </div>
 

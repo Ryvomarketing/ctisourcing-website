@@ -8,7 +8,7 @@ const partnershipBenefits = [
     icon: Factory,
     title: "Tanzania's Largest Facility",
     description:
-      "QVC Africa operates the largest honey processing facility in Tanzania, originally constructed by the European Union. State-of-the-art equipment ensures consistent quality.",
+      "QVC Africa operates the largest honey processing facility in Tanzania with state-of-the-art equipment that ensures consistent quality.",
   },
   {
     icon: Shield,

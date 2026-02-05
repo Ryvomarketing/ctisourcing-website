@@ -1,39 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Building2 } from "lucide-react";
+import { MapPin, GraduationCap } from "lucide-react";
 
-const founders = [
+const leadership = [
+  {
+    name: "Bonaventure Mhonda",
+    title: "Co-Founder",
+    location: "Tanzania",
+    education: "MBA in Finance, University of Utah",
+    description:
+      "Leads Tanzania-based operations including QVC Africa, overseeing production, business development, quality assurance, and export management at Tanzania's largest honey processing facility. He brings decades of experience in business management, international trade, and supply chain operations.",
+    additionalInfo:
+      "His leadership ensures operational efficiency, consistent product quality, and sustainable expansion of the company's core activities.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
+  },
   {
     name: "Roger Manzur",
     title: "Co-Founder",
     location: "United States",
-    role: "US Operations",
+    education: "Master's in Marketing, Florida International University",
     description:
-      "Roger leads CTI Sourcing's North American operations, managing client relationships, logistics, and business development. His focus is ensuring American buyers receive the premium service and reliability they expect from a domestic partner.",
-    responsibilities: [
-      "Client relationship management",
-      "US logistics coordination",
-      "Business development",
-      "Quality assurance oversight",
-    ],
+      "Leads U.S.-based operations, managing client relationships, logistics, market development, and strategic partnerships. His role ensures that American buyers receive the reliability, responsiveness, and service quality expected from a domestic supplier, while maintaining a seamless international supply chain.",
+    additionalInfo:
+      "With over 10 years of experience in wealth management—commercializing products and building strong relationships with investors and investment firms—Roger brings a unique perspective to market expansion, client trust, and long-term partnership development. His leadership helps ensure smooth operations and efficient product delivery across North American markets.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop",
   },
   {
-    name: "Bonaventure Mhonda",
-    title: "Co-Founder",
-    subtitle: "Founder, QVC Africa",
+    name: "Charles Ngatigwa",
+    title: "Field Operations Manager & Organic Specialist",
     location: "Tanzania",
-    role: "Tanzania Operations",
+    education: "Master's in Environmental Forestry, University of Wales Bangor",
     description:
-      "Bonaventure is the founder of QVC Africa and brings decades of experience in Tanzanian beekeeping and agricultural exports. He oversees all sourcing, production, and quality control operations at Tanzania's largest honey processing facility.",
-    responsibilities: [
-      "Sourcing & production oversight",
-      "Quality control management",
-      "Beekeeper network coordination",
-      "Organic certification compliance",
-    ],
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
+      "Responsible for field operations, organic compliance, and quality integrity across QVC Africa's production network. He previously served with the Tanzania Forest Service Agency for over 10 years before specializing in organic and sustainable beekeeping, where he has spent another 15 years developing hands-on expertise.",
+    additionalInfo:
+      "With over 25 years of combined experience in beekeeping, organic production, and sustainable resource management, Charles oversees 30,000+ beehives, manages quality control systems, conducts technical training programs, and ensures full adherence to organic standards and certification requirements. His work guarantees that all products meet premium quality and strict organic integrity.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
   },
 ];
 
@@ -41,7 +43,7 @@ export function FoundersSection() {
   return (
     <section
       className="relative py-24 bg-black"
-      aria-labelledby="founders-heading"
+      aria-labelledby="leadership-heading"
     >
       <div className="absolute inset-0 honeycomb-pattern opacity-10" />
 
@@ -55,10 +57,10 @@ export function FoundersSection() {
           className="text-center mb-16"
         >
           <h2
-            id="founders-heading"
+            id="leadership-heading"
             className="font-serif text-3xl sm:text-4xl text-cream mb-4"
           >
-            Meet the Founders
+            Leadership Team
           </h2>
           <p className="text-cream/60 max-w-2xl mx-auto">
             A partnership bridging two continents—combining American business
@@ -67,72 +69,59 @@ export function FoundersSection() {
           <div className="section-divider mx-auto mt-6" />
         </motion.div>
 
-        {/* Founders Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {founders.map((founder, index) => (
+        {/* Leadership Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {leadership.map((leader, index) => (
             <motion.article
-              key={founder.name}
+              key={leader.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               className="bg-charcoal/50 border border-gold/10 rounded-lg overflow-hidden"
             >
-              <div className="p-8">
+              <div className="p-6">
                 {/* Header with image */}
-                <div className="flex items-start gap-6 mb-6">
-                  {/* Photo placeholder */}
-                  <div className="relative w-24 h-24 flex-shrink-0">
+                <div className="flex flex-col items-center text-center mb-6">
+                  {/* Photo */}
+                  <div className="relative w-28 h-28 mb-4">
                     <div
-                      className="w-full h-full rounded-lg bg-cover bg-center border-2 border-gold/20"
-                      style={{ backgroundImage: `url('${founder.image}')` }}
+                      className="w-full h-full rounded-full bg-cover bg-center border-2 border-gold/20"
+                      style={{ backgroundImage: `url('${leader.image}')` }}
                       role="img"
-                      aria-label={`Photo of ${founder.name}`}
+                      aria-label={`Photo of ${leader.name}`}
                     />
-                    {/* Location badge */}
-                    <div className="absolute -bottom-2 -right-2 bg-forest text-cream text-xs px-2 py-1 rounded flex items-center gap-1">
-                      <MapPin className="w-3 h-3" aria-hidden="true" />
-                      <span>{founder.location}</span>
-                    </div>
                   </div>
 
                   {/* Name and title */}
-                  <div>
-                    <h3 className="font-serif text-2xl text-cream mb-1">
-                      {founder.name}
-                    </h3>
-                    <p className="text-gold font-medium">{founder.title}</p>
-                    {founder.subtitle && (
-                      <p className="text-cream/50 text-sm">{founder.subtitle}</p>
-                    )}
-                    <div className="flex items-center gap-2 mt-2 text-cream/40 text-sm">
-                      <Building2 className="w-4 h-4" aria-hidden="true" />
-                      <span>{founder.role}</span>
-                    </div>
+                  <h3 className="font-serif text-xl text-cream mb-1">
+                    {leader.name}
+                  </h3>
+                  <p className="text-gold font-medium text-sm">{leader.title}</p>
+
+                  {/* Location */}
+                  <div className="flex items-center gap-1.5 mt-2 text-cream/40 text-sm">
+                    <MapPin className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>{leader.location}</span>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-cream/70 leading-relaxed mb-6">
-                  {founder.description}
+                <p className="text-cream/70 text-sm leading-relaxed mb-4">
+                  {leader.description}
                 </p>
 
-                {/* Responsibilities */}
-                <div>
-                  <h4 className="text-xs text-gold tracking-wide uppercase mb-3">
-                    Key Responsibilities
-                  </h4>
-                  <ul className="grid grid-cols-2 gap-2">
-                    {founder.responsibilities.map((responsibility) => (
-                      <li
-                        key={responsibility}
-                        className="text-cream/60 text-sm flex items-center gap-2"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
-                        <span>{responsibility}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Additional Info */}
+                <p className="text-cream/60 text-sm leading-relaxed mb-4">
+                  {leader.additionalInfo}
+                </p>
+
+                {/* Education */}
+                <div className="pt-4 border-t border-gold/10">
+                  <div className="flex items-start gap-2 text-cream/50 text-xs">
+                    <GraduationCap className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <span>{leader.education}</span>
+                  </div>
                 </div>
               </div>
             </motion.article>
