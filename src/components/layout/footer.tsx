@@ -144,9 +144,9 @@ export function Footer() {
             <div className="mt-8 flex items-center gap-3">
               {/* USDA Organic Seal */}
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/USDA_organic_seal.svg/120px-USDA_organic_seal.svg.png"
+                src="/images/usda nop seal.jpg"
                 alt="USDA Organic Certified"
-                className="w-10 h-10"
+                className="w-10 h-10 rounded"
                 loading="lazy"
               />
               <p className="text-xs text-cream/40">
