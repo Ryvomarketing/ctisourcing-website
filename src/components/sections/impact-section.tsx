@@ -5,6 +5,11 @@ import { Users, Heart, TreePine, Shield } from "lucide-react";
 
 const impactStats = [
   {
+    number: "30,000",
+    label: "Beehives",
+    description: "Active hives across protected forest reserves",
+  },
+  {
     number: "1,000+",
     label: "Local Beekeepers",
     description: "Supporting livelihoods across rural Tanzania",
@@ -100,7 +105,7 @@ export function ImpactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
         >
           {impactStats.map((stat, index) => (
             <motion.div
