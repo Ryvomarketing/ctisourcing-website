@@ -13,7 +13,7 @@ const leadership = [
       "Leads Tanzania-based operations including QVC Africa, overseeing production, business development, quality assurance, and export management at a large-scale honey processing facility. With decades of experience in business management, international trade, and supply chain operations, he has built deep expertise in African commodity exports.",
     additionalInfo:
       "His hands-on leadership style and extensive network across Tanzania's agricultural sector have been instrumental in scaling production capacity and establishing reliable supplier relationships. Bonaventure ensures operational efficiency, consistent product quality, and sustainable expansion while maintaining strong ties with local beekeeper communities and farmer associations.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
+    image: "/images/venture.png",
   },
   {
     name: "Roger Manzur",
@@ -24,7 +24,7 @@ const leadership = [
       "Leads U.S.-based operations, managing client relationships, logistics, market development, and strategic partnerships. Roger ensures that American buyers receive the reliability, responsiveness, and service quality expected from a domestic supplier, while maintaining a seamless international supply chain.",
     additionalInfo:
       "With over 10 years of experience in wealth management—commercializing products and building strong relationships with investors and investment firms—Roger brings a unique perspective to market expansion, client trust, and long-term partnership development. His leadership helps ensure smooth operations and efficient product delivery across North American markets.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop",
+    image: "/images/roger.png",
   },
   {
     name: "Charles Ngatigwa",
