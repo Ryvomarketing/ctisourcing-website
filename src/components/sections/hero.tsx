@@ -36,51 +36,39 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6"
-        >
-          <span className="inline-block px-6 py-3 bg-black/60 backdrop-blur-sm border border-gold/40 rounded-full text-gold text-sm sm:text-base font-medium tracking-[0.15em] uppercase">
-            Exclusive US Partner of QVC Africa
-          </span>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream leading-tight mb-6"
         >
-          <span className="text-gold-gradient">USDA Organic Certified.</span>
+          <span className="text-cream">Premium</span>{" "}
+          <span className="text-gold-gradient">Organic Beeswax</span>
           <br />
-          <span className="text-cream">Full Traceability.</span>
-          <br />
-          <span className="text-cream">Bulk Supply.</span>
+          <span className="text-cream">&amp; Honey from Tanzania</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg sm:text-xl text-cream/70 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Premium beeswax and honey sourced from Tanzania&apos;s protected
-          forests. Delivered from the US.
+          Direct sourcing from protected forest reserves. Certified organic,
+          fully traceable, competitively priced. Your trusted supply partner.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button
             onClick={openModal}
             className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,168,83,0.3)]"
           >
-            Request a Quote
+            Get in Touch
           </Button>
           <Button
             asChild

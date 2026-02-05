@@ -1,7 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Globe, Handshake, CheckCircle } from "lucide-react";
+import { Check } from "lucide-react";
+
+const benefits = [
+  "Direct origin sourcing with no middlemen",
+  "Competitive origin pricing",
+  "Reliable logistics and smooth transactions",
+  "Full transparency and business integrity",
+  "Consistent quality assurance and supply",
+];
 
 export function StorySection() {
   return (
@@ -22,48 +30,46 @@ export function StorySection() {
               id="story-heading"
               className="font-serif text-3xl sm:text-4xl text-charcoal mb-6"
             >
-              The CTI Sourcing Story
+              Bridging Africa and America
             </h2>
 
             <div className="space-y-6 text-charcoal/70 leading-relaxed">
               <p>
-                Tanzania produces some of the world&apos;s finest beeswax and
-                honey—sourced from pristine forest reserves, processed with
-                care, and certified to the highest organic standards. But for
-                American manufacturers, accessing these products has always
-                meant navigating international complexities.
+                QVC Africa identified a strong unmet need: bridging sourcing
+                between Africa and the United States—enabling direct access to
+                high-quality African raw materials without inefficiencies or
+                unnecessary intermediaries.
               </p>
 
               <p>
-                <strong className="text-charcoal">CTI Sourcing was founded to change that.</strong>{" "}
-                We recognized that US buyers want premium African products but
-                prefer working with a domestic partner—someone who understands
-                American business practices, speaks the language of compliance,
-                and provides the reliability they expect.
+                To address this gap,{" "}
+                <strong className="text-charcoal">
+                  QVC Africa formed an exclusive partnership with CTI Sourcing
+                </strong>
+                , creating a reliable and transparent supply bridge that
+                connects U.S.-based manufacturers, suppliers, and buyers
+                directly to pure, organic African products at origin-level
+                pricing.
               </p>
 
               <p>
-                By bringing together Tanzanian production excellence with
-                American business infrastructure, we&apos;ve created a seamless
-                sourcing experience. You get the quality of African origin with
-                the convenience of a US-based relationship.
+                This strategic collaboration allows partners to source products
+                thousands of miles away with confidence.
               </p>
             </div>
 
-            {/* Key benefits */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {[
-                { icon: Globe, text: "African Origin" },
-                { icon: Handshake, text: "US Partnership" },
-                { icon: CheckCircle, text: "Seamless Experience" },
-              ].map((item) => (
+            {/* Benefits list */}
+            <div className="mt-8 space-y-3">
+              {benefits.map((benefit) => (
                 <div
-                  key={item.text}
-                  className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gold/20"
+                  key={benefit}
+                  className="flex items-center gap-3"
                 >
-                  <item.icon className="w-5 h-5 text-gold flex-shrink-0" aria-hidden="true" />
-                  <span className="text-charcoal text-sm font-medium">
-                    {item.text}
+                  <div className="w-5 h-5 rounded-full bg-forest/10 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-3 h-3 text-forest" aria-hidden="true" />
+                  </div>
+                  <span className="text-charcoal/80 text-sm">
+                    {benefit}
                   </span>
                 </div>
               ))}
@@ -101,6 +107,21 @@ export function StorySection() {
               {/* Decorative element */}
               <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-gold/30 rounded-lg" />
             </div>
+
+            {/* Mission statement */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-12 p-6 bg-charcoal/5 rounded-lg border-l-4 border-gold"
+            >
+              <p className="text-charcoal/80 text-sm italic leading-relaxed">
+                &ldquo;Our mission is to make ethical, efficient, and
+                high-quality African sourcing simple, secure, and commercially
+                competitive for the global market.&rdquo;
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </div>

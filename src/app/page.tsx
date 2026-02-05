@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { ValueProps } from "@/components/sections/value-props";
 import { ProductPreview } from "@/components/sections/product-preview";
+import { ImpactSection } from "@/components/sections/impact-section";
 import { CTABanner } from "@/components/sections/cta-banner";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero />
       <ValueProps />
       <ProductPreview />
+      <ImpactSection />
       <CTABanner />
     </>
   );

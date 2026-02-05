@@ -1,26 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, QrCode, Building2 } from "lucide-react";
+import { DollarSign, Factory, Leaf } from "lucide-react";
 
 const valueProps = [
   {
-    icon: Shield,
-    title: "USDA Organic Certified",
+    icon: DollarSign,
+    title: "Competitive Pricing",
     description:
-      "Verified by Bio.Inspecta Switzerland. Full compliance with NOP standards for handling and processing.",
+      "Direct origin sourcing with no middlemen. Get premium organic products at origin-level pricing without unnecessary markups.",
   },
   {
-    icon: QrCode,
-    title: "Full Traceability",
+    icon: Factory,
+    title: "Reliable Supply",
     description:
-      "QR-coded tracking from hive to delivery. Every batch tested and documented with Certificate of Analysis.",
+      "Tanzania's largest processing facility with thousands of hives across protected reserves. Consistent quality and volume you can count on.",
   },
   {
-    icon: Building2,
-    title: "US-Based Partner",
+    icon: Leaf,
+    title: "Contamination Free",
     description:
-      "American business terms, domestic support. Your trusted point of contact for African sourcing.",
+      "Sourced from protected forest reserves with no industrial farming, no chemical exposure, and minimal human interference. Pure by nature.",
   },
 ];
 

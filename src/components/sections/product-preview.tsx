@@ -8,17 +8,16 @@ const products = [
   {
     title: "Beeswax",
     description:
-      "Premium organic and conventional beeswax sourced from Tanzania's Nyahua Forest Reserve. Available in blocks, slabs, and pastilles.",
-    specs: ["USDA Organic Available", "Melting Point: 61-65°C", "CAS: 8012-89-3"],
-    image:
-      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1200&auto=format&fit=crop",
+      "Premium organic beeswax sourced from Tanzania's Nyahua Forest Reserve. Available in blocks, slabs, and pastilles.",
+    specs: ["Melting Point: 61-65°C", "CAS: 8012-89-3", "Bulk Available"],
+    image: "/images/raw beeswax.png",
     href: "/products#beeswax",
   },
   {
     title: "Honey",
     description:
       "100% natural, additive-free organic honey with unique Tanzanian floral profile. Bulk quantities available in drums.",
-    specs: ["100% Organic", "Unique Floral Profile", "Bulk Drums Available"],
+    specs: ["Unique Floral Profile", "Multifloral", "Bulk Drums Available"],
     image:
       "https://images.unsplash.com/photo-1471943311424-646960669fbc?q=80&w=1200&auto=format&fit=crop",
     href: "/products#honey",
@@ -81,9 +80,7 @@ export function ProductPreview() {
                     {/* Badge */}
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 bg-gold/90 text-black text-xs font-medium tracking-wide rounded">
-                        {product.title === "Beeswax"
-                          ? "Organic & Conventional"
-                          : "100% Organic"}
+                        Organic
                       </span>
                     </div>
                   </div>

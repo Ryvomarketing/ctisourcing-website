@@ -119,7 +119,7 @@ export function ProcessSection() {
                 </div>
 
                 {/* Center icon - hidden on mobile */}
-                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center">
+                <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center z-20">
                   <div className="w-16 h-16 rounded-full bg-forest border-2 border-gold/30 flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold">
                       <step.icon className="w-6 h-6" aria-hidden="true" />
@@ -129,8 +129,8 @@ export function ProcessSection() {
 
                 {/* Step number */}
                 <div
-                  className={`hidden lg:block lg:w-[calc(50%-2rem)] ${
-                    index % 2 === 0 ? "lg:text-left" : "lg:text-right"
+                  className={`hidden lg:block lg:w-[calc(50%-2rem)] relative z-10 ${
+                    index % 2 === 0 ? "lg:text-left lg:pl-8" : "lg:text-right lg:pr-8"
                   }`}
                 >
                   <span className="text-6xl font-serif text-gold/20">

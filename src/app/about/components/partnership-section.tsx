@@ -44,20 +44,20 @@ export function PartnershipSection() {
             transition={{ duration: 0.6 }}
           >
             <span className="text-gold text-sm tracking-[0.2em] uppercase mb-4 block">
-              Our Source
+              Our Partnership
             </span>
             <h2
               id="partnership-heading"
               className="font-serif text-3xl sm:text-4xl text-cream mb-6"
             >
-              Powered by QVC Africa
+              Partnering with QVC Africa
             </h2>
 
             <p className="text-cream/70 leading-relaxed mb-8">
-              CTI Sourcing is the exclusive North American partner of QVC Africa,
-              Tanzania&apos;s premier producer of organic beeswax and honey. When you
-              work with us, you&apos;re getting direct access to their world-class
-              production capabilities.
+              Through our exclusive partnership, CTI Sourcing serves as the direct
+              supply bridge connecting North American buyers to QVC Africa&apos;s
+              world-class production capabilities. No middlemen, no inefficiencies—just
+              direct access to Tanzania&apos;s premier organic bee products.
             </p>
 
             {/* Benefits */}
@@ -102,8 +102,8 @@ export function PartnershipSection() {
 
               <p className="text-cream/70 text-center mb-8">
                 For all North American inquiries, CTI Sourcing is your direct
-                point of contact. We handle everything from quotes to delivery,
-                ensuring a seamless experience.
+                point of contact. We handle everything from initial conversation
+                to delivery, ensuring a seamless experience.
               </p>
 
               {/* Visual representation */}
@@ -134,35 +134,11 @@ export function PartnershipSection() {
                 </div>
               </div>
 
-              {/* Certifications */}
+              {/* Certifications - subtle text */}
               <div className="border-t border-gold/10 pt-6">
-                <p className="text-xs text-cream/40 text-center mb-4">
-                  Certified By
+                <p className="text-xs text-cream/50 text-center">
+                  USDA/NOP & EU Organic Certified by Bio.Inspecta
                 </p>
-                <div className="flex items-center justify-center gap-6">
-                  {/* USDA Organic Badge */}
-                  <div
-                    className="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center bg-black/30"
-                    title="USDA Organic Certified"
-                  >
-                    <span className="text-[10px] text-gold font-medium text-center leading-tight">
-                      USDA
-                      <br />
-                      ORGANIC
-                    </span>
-                  </div>
-                  {/* Bio.Inspecta Badge */}
-                  <div
-                    className="px-4 py-3 border-2 border-gold/30 rounded-lg bg-black/30"
-                    title="Certified by Bio.Inspecta Switzerland"
-                  >
-                    <span className="text-xs text-gold font-medium">
-                      BIO.INSPECTA
-                    </span>
-                    <br />
-                    <span className="text-[10px] text-cream/50">Switzerland</span>
-                  </div>
-                </div>
               </div>
             </div>
 

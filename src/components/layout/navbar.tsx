@@ -133,7 +133,7 @@ export function Navbar() {
                 onClick={openModal}
                 className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-3 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
               >
-                Get a Quote
+                Contact Us
               </Button>
             </div>
 
@@ -220,7 +220,7 @@ export function Navbar() {
                   }}
                   className="bg-gold hover:bg-gold-light text-black font-medium px-8 py-3 text-lg tracking-wide"
                 >
-                  Get a Quote
+                  Contact Us
                 </Button>
               </motion.div>
             </motion.nav>

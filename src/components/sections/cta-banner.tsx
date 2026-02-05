@@ -27,18 +27,18 @@ export function CTABanner() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-cream mb-6 leading-tight">
-            Ready to source premium{" "}
-            <span className="text-gold">African beeswax</span>?
+            Let&apos;s talk about your{" "}
+            <span className="text-gold">sourcing needs</span>
           </h2>
           <p className="text-cream/70 text-lg mb-8 max-w-2xl mx-auto">
-            Get competitive pricing, full documentation, and reliable supply
-            from your trusted US partner.
+            Every partnership starts with a conversation. Tell us what you&apos;re looking
+            for and we&apos;ll find the right solution together.
           </p>
           <Button
             onClick={openModal}
             className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,168,83,0.3)] group"
           >
-            Get a Quote
+            Start a Conversation
             <ArrowRight
               className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300"
               aria-hidden="true"

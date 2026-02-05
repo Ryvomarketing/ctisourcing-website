@@ -11,9 +11,8 @@ const footerLinks = {
     { href: "/about", label: "About" },
   ],
   products: [
-    { href: "/products#beeswax", label: "Organic Beeswax" },
-    { href: "/products#beeswax", label: "Conventional Beeswax" },
-    { href: "/products#honey", label: "Organic Honey" },
+    { href: "/products#beeswax", label: "Beeswax" },
+    { href: "/products#honey", label: "Honey" },
   ],
 };
 
@@ -70,7 +69,7 @@ export function Footer() {
               forests. Delivered from the US.
             </p>
             <p className="text-gold/80 text-xs tracking-wide">
-              Exclusive US Partner of QVC Africa
+              Exclusive Partner of QVC Africa
             </p>
           </div>
 
@@ -142,30 +141,17 @@ export function Footer() {
             </ul>
 
             {/* Certifications */}
-            <div className="mt-8">
-              <p className="text-xs text-cream/40 mb-3">Certifications</p>
-              <div className="flex items-center gap-4">
-                {/* USDA Organic Badge */}
-                <div
-                  className="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center"
-                  title="USDA Organic Certified"
-                >
-                  <span className="text-[8px] text-gold font-medium text-center leading-tight">
-                    USDA
-                    <br />
-                    ORGANIC
-                  </span>
-                </div>
-                {/* Bio.Inspecta Badge */}
-                <div
-                  className="px-3 py-2 border border-gold/30 rounded"
-                  title="Certified by Bio.Inspecta Switzerland"
-                >
-                  <span className="text-[8px] text-gold font-medium">
-                    BIO.INSPECTA
-                  </span>
-                </div>
-              </div>
+            <div className="mt-8 flex items-center gap-3">
+              {/* USDA Organic Seal */}
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/USDA_organic_seal.svg/120px-USDA_organic_seal.svg.png"
+                alt="USDA Organic Certified"
+                className="w-10 h-10"
+                loading="lazy"
+              />
+              <p className="text-xs text-cream/40">
+                USDA/NOP & EU Organic Certified
+              </p>
             </div>
           </div>
         </div>
@@ -174,25 +160,9 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-gold/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-cream/40 text-xs">
-              &copy; {currentYear} CTI Sourcing. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              <Link
-                href="/privacy"
-                className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
-              >
-                Terms of Service
-              </Link>
-            </div>
-          </div>
+          <p className="text-cream/40 text-xs text-center md:text-left">
+            &copy; {currentYear} CTI Sourcing. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

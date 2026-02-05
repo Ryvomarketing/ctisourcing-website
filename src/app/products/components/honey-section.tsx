@@ -7,12 +7,11 @@ import { useContactModal } from "@/components/layout/contact-modal-context";
 
 const honeyData = {
   title: "Organic Honey",
-  badge: "100% Organic",
+  badge: "Organic",
   description:
     "Pure, additive-free organic honey with a unique Tanzanian floral profile. Sourced from the same sustainable apiaries in the Nyahua Forest Reserve, our honey offers distinctive flavor notes and lab-verified purity.",
   features: [
     "100% natural, no additives",
-    "USDA Organic certified",
     "Unique Tanzanian floral profile",
     "Full batch traceability",
     "Laboratory tested for purity",
@@ -20,7 +19,7 @@ const honeyData = {
   ],
   specifications: {
     Type: "Multifloral honey",
-    Certification: "USDA Organic",
+    Certification: "USDA/NOP, EU Organic",
     Color: "Light to medium amber",
     Packaging: "Bulk drums (various sizes)",
     Origin: "Tanzania (Nyahua Forest Reserve)",
@@ -133,7 +132,7 @@ export function HoneySection() {
               onClick={openModal}
               className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
             >
-              Request Quote for Honey
+              Inquire About Honey
             </Button>
           </motion.div>
 
@@ -159,7 +158,7 @@ export function HoneySection() {
               {/* Badge */}
               <div className="absolute top-4 left-4">
                 <span className="px-3 py-1.5 bg-gold text-black text-xs font-semibold tracking-wide rounded">
-                  USDA Organic Certified
+                  Organic
                 </span>
               </div>
             </div>

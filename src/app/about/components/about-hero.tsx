@@ -15,11 +15,11 @@ export function AboutHero() {
           style={{
             backgroundImage: `
               linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.95)),
-              url('https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?q=80&w=2067&auto=format&fit=crop')
+              url('/images/tanzania forest.png')
             `,
           }}
           role="img"
-          aria-label="African savanna landscape"
+          aria-label="Tanzania forest landscape"
         />
         <div className="absolute inset-0 honeycomb-pattern opacity-20" />
       </div>

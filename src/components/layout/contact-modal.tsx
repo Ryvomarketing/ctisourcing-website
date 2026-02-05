@@ -11,6 +11,8 @@ import {
   Send,
   Loader2,
   CheckCircle,
+  Mail,
+  Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +31,7 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
-type ModalView = "options" | "quote" | "success";
+type ModalView = "options" | "inquiry" | "success";
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [view, setView] = useState<ModalView>("options");
@@ -193,7 +195,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   className="font-serif text-2xl text-cream"
                 >
                   {view === "options" && "Let's Talk"}
-                  {view === "quote" && "Request a Quote"}
+                  {view === "inquiry" && "Send an Inquiry"}
                   {view === "success" && "Message Sent"}
                 </h2>
               </div>
@@ -224,9 +226,9 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       Choose how you&apos;d like to connect with us.
                     </p>
 
-                    {/* Quote Option */}
+                    {/* Inquiry Option */}
                     <button
-                      onClick={() => setView("quote")}
+                      onClick={() => setView("inquiry")}
                       className="w-full group p-5 border border-gold/30 rounded-lg hover:border-gold hover:bg-gold/5 transition-all duration-300 text-left"
                     >
                       <div className="flex items-start gap-4">
@@ -235,7 +237,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         </div>
                         <div>
                           <h3 className="font-medium text-cream group-hover:text-gold transition-colors">
-                            Request a Quote
+                            Send an Inquiry
                           </h3>
                           <p className="text-sm text-cream/50 mt-1">
                             Tell us about your needs. We&apos;ll respond within
@@ -288,13 +290,34 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         </div>
                       </div>
                     </a>
+
+                    {/* Direct Contact Info */}
+                    <div className="mt-6 pt-6 border-t border-gold/10">
+                      <p className="text-xs text-cream/40 mb-3">Or reach us directly</p>
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <a
+                          href="mailto:info@ctisourcing.com"
+                          className="flex items-center gap-2 text-cream/60 hover:text-gold text-sm transition-colors"
+                        >
+                          <Mail className="w-4 h-4" aria-hidden="true" />
+                          info@ctisourcing.com
+                        </a>
+                        <a
+                          href="tel:+1234567890"
+                          className="flex items-center gap-2 text-cream/60 hover:text-gold text-sm transition-colors"
+                        >
+                          <Phone className="w-4 h-4" aria-hidden="true" />
+                          +1 (234) 567-890
+                        </a>
+                      </div>
+                    </div>
                   </motion.div>
                 )}
 
-                {/* Quote Form View */}
-                {view === "quote" && (
+                {/* Inquiry Form View */}
+                {view === "inquiry" && (
                   <motion.form
-                    key="quote"
+                    key="inquiry"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}

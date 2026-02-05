@@ -3,6 +3,7 @@ import { AboutHero } from "./components/about-hero";
 import { StorySection } from "./components/story-section";
 import { FoundersSection } from "./components/founders-section";
 import { PartnershipSection } from "./components/partnership-section";
+import { FacilitiesSection } from "./components/facilities-section";
 import { CTABanner } from "@/components/sections/cta-banner";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function AboutPage() {
       <StorySection />
       <FoundersSection />
       <PartnershipSection />
+      <FacilitiesSection />
       <CTABanner />
     </>
   );
