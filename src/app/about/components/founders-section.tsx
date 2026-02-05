@@ -35,7 +35,7 @@ const leadership = [
       "Responsible for field operations, organic compliance, and quality integrity across QVC Africa's production network. He previously served with the Tanzania Forest Service Agency for over 10 years before specializing in organic and sustainable beekeeping, where he has spent another 15 years developing hands-on expertise.",
     additionalInfo:
       "With over 25 years of combined experience in beekeeping, organic production, and sustainable resource management, Charles oversees 30,000+ beehives, manages quality control systems, conducts technical training programs, and ensures full adherence to organic standards and certification requirements. His work guarantees that all products meet premium quality and strict organic integrity.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
+    image: "/images/charles.png",
   },
 ];
 
