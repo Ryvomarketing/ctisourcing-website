@@ -409,17 +409,17 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             <SelectValue placeholder="Select product" />
                           </SelectTrigger>
                           <SelectContent className="bg-black border-gold/20">
-                            <SelectItem value="organic-beeswax">
-                              Organic Beeswax
+                            <SelectItem value="beeswax">
+                              Beeswax
                             </SelectItem>
-                            <SelectItem value="conventional-beeswax">
-                              Conventional Beeswax
+                            <SelectItem value="honey">
+                              Honey
                             </SelectItem>
-                            <SelectItem value="organic-honey">
-                              Organic Honey
+                            <SelectItem value="both">
+                              Both Products
                             </SelectItem>
-                            <SelectItem value="multiple">
-                              Multiple Products
+                            <SelectItem value="other">
+                              Other / Not Sure
                             </SelectItem>
                           </SelectContent>
                         </Select>

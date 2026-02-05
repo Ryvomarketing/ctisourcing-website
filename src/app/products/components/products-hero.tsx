@@ -54,7 +54,7 @@ export function ProductsHero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-cream/70 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed"
         >
-          Organic and conventional options. Bulk quantities. Full documentation
+          Premium organic products. Bulk quantities. Full documentation
           and traceability with every order.
         </motion.p>
 
