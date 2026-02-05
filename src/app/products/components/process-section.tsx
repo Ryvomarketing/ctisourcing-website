@@ -20,7 +20,7 @@ const processSteps = [
     icon: Factory,
     title: "Professional Processing",
     description:
-      "Processed at Tanzania's largest honey facility, originally built by the European Union. Stainless steel equipment, controlled temperatures, multi-stage filtration.",
+      "Processed at our large-scale facility in Tabora Sikonge. Stainless steel equipment, controlled temperatures, multi-stage filtration.",
   },
   {
     icon: FlaskConical,

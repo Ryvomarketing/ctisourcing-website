@@ -7,7 +7,7 @@ const facilities = [
   {
     icon: Factory,
     title: "Processing Facility",
-    description: "Tanzania's largest honey processing facility located in Tabora Sikonge, equipped with state-of-the-art processing equipment.",
+    description: "Large-scale honey processing facility located in Tabora Sikonge, equipped with state-of-the-art processing equipment.",
     image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=1200&auto=format&fit=crop",
     alt: "Industrial processing facility",
   },

@@ -6,9 +6,9 @@ import { Shield, Factory, Award, ArrowRight } from "lucide-react";
 const partnershipBenefits = [
   {
     icon: Factory,
-    title: "Tanzania's Largest Facility",
+    title: "Large-Scale Facility",
     description:
-      "QVC Africa operates the largest honey processing facility in Tanzania with state-of-the-art equipment that ensures consistent quality.",
+      "QVC Africa operates one of Tanzania's largest honey processing facilities with state-of-the-art equipment that ensures consistent quality.",
   },
   {
     icon: Shield,

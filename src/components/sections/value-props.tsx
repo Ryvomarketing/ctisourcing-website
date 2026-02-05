@@ -14,13 +14,13 @@ const valueProps = [
     icon: Factory,
     title: "Reliable Supply",
     description:
-      "Tanzania's largest processing facility with thousands of hives across protected reserves. Consistent quality and volume you can count on.",
+      "Large-scale processing facility with thousands of hives across protected reserves. Consistent quality and volume you can count on.",
   },
   {
     icon: Leaf,
-    title: "Contamination Free",
+    title: "Protected Purity",
     description:
-      "Sourced from protected forest reserves with no industrial farming, no chemical exposure, and minimal human interference. Pure by nature.",
+      "Sourced from protected forest reserves with no industrial farming, no chemical exposure, and minimal human interference. Natural integrity preserved.",
   },
 ];
 
