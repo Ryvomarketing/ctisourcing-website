@@ -10,9 +10,9 @@ const leadership = [
     location: "Tanzania",
     education: "MBA in Finance, University of Utah",
     description:
-      "Leads Tanzania-based operations including QVC Africa, overseeing production, business development, quality assurance, and export management at a large-scale honey processing facility. He brings decades of experience in business management, international trade, and supply chain operations.",
+      "Leads Tanzania-based operations including QVC Africa, overseeing production, business development, quality assurance, and export management at a large-scale honey processing facility. With decades of experience in business management, international trade, and supply chain operations, he has built deep expertise in African commodity exports.",
     additionalInfo:
-      "His MBA in Finance from the University of Utah strongly supports his strategic role in scaling production, driving growth, and maintaining rigorous quality control standards on the ground. Bonaventure's leadership ensures operational efficiency, consistent product quality, and sustainable expansion of the company's core activities across Tanzania's protected forest reserves.",
+      "His hands-on leadership style and extensive network across Tanzania's agricultural sector have been instrumental in scaling production capacity and establishing reliable supplier relationships. Bonaventure ensures operational efficiency, consistent product quality, and sustainable expansion while maintaining strong ties with local beekeeper communities and farmer associations.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
   },
   {
