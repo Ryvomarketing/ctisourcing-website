@@ -15,6 +15,7 @@ import {
   Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackCTA, trackFormSubmit } from "@/lib/analytics";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -126,6 +127,14 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     // Simulate API call - replace with actual Resend integration
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
+    trackFormSubmit({
+      form_type: "inquiry",
+      product_interest: formData.productInterest || undefined,
+      estimated_volume: formData.estimatedVolume || undefined,
+      has_phone: !!formData.phone,
+      has_message: !!formData.message,
+    });
+
     setIsSubmitting(false);
     setView("success");
   };
@@ -228,7 +237,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     {/* Inquiry Option */}
                     <button
-                      onClick={() => setView("inquiry")}
+                      onClick={() => {
+                        trackCTA({ cta_location: "modal", cta_text: "Send an Inquiry", cta_action: "open_modal" });
+                        setView("inquiry");
+                      }}
                       className="w-full group p-5 border border-gold/30 rounded-lg hover:border-gold hover:bg-gold/5 transition-all duration-300 text-left"
                     >
                       <div className="flex items-start gap-4">
@@ -252,6 +264,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       href={whatsappLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackCTA({ cta_location: "modal", cta_text: "Quick Question", cta_action: "external" })}
                       className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block"
                     >
                       <div className="flex items-start gap-4">
@@ -274,6 +287,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       href={calendarLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackCTA({ cta_location: "modal", cta_text: "Schedule a Call", cta_action: "external" })}
                       className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block"
                     >
                       <div className="flex items-start gap-4">

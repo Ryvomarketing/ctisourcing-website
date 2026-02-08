@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useContactModal } from "@/components/layout/contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 import { ArrowRight } from "lucide-react";
 
 export function CTABanner() {
@@ -35,7 +36,10 @@ export function CTABanner() {
             for and we&apos;ll find the right solution together.
           </p>
           <Button
-            onClick={openModal}
+            onClick={() => {
+              trackCTA({ cta_location: "cta_banner", cta_text: "Start a Conversation", cta_action: "open_modal" });
+              openModal();
+            }}
             className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,168,83,0.3)] group"
           >
             Start a Conversation

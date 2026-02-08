@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContactModal } from "@/components/layout/contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 import Link from "next/link";
 
 export function Hero() {
@@ -65,7 +66,10 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button
-            onClick={openModal}
+            onClick={() => {
+              trackCTA({ cta_location: "hero", cta_text: "Get in Touch", cta_action: "open_modal" });
+              openModal();
+            }}
             className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,168,83,0.3)]"
           >
             Get in Touch
@@ -75,7 +79,12 @@ export function Hero() {
             variant="outline"
             className="border-2 border-gold/50 bg-transparent text-gold hover:bg-gold/10 hover:border-gold font-semibold px-8 py-6 text-base tracking-wide transition-all duration-300"
           >
-            <Link href="/products">View Products</Link>
+            <Link
+              href="/products"
+              onClick={() => trackCTA({ cta_location: "hero", cta_text: "View Products", cta_action: "navigate" })}
+            >
+              View Products
+            </Link>
           </Button>
         </motion.div>
       </div>

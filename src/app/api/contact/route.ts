@@ -65,8 +65,10 @@ export async function POST(request: NextRequest) {
     }
     */
 
-    // For now, just log the submission (remove in production)
-    console.log("Quote request received:", data);
+    // Log submissions in development only — never log PII in production
+    if (process.env.NODE_ENV === "development") {
+      console.log("Quote request received:", data);
+    }
 
     return NextResponse.json(
       { success: true, message: "Quote request received" },

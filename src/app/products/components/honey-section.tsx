@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContactModal } from "@/components/layout/contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 
 const honeyData = {
   title: "Organic Honey",
@@ -129,7 +130,10 @@ export function HoneySection() {
 
             {/* CTA */}
             <Button
-              onClick={openModal}
+              onClick={() => {
+                trackCTA({ cta_location: "product_section", cta_text: "Inquire About Honey", cta_action: "open_modal" });
+                openModal();
+              }}
               className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
             >
               Inquire About Honey

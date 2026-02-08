@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useContactModal } from "./contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
@@ -89,7 +90,10 @@ export function Footer() {
               ))}
               <li>
                 <button
-                  onClick={openModal}
+                  onClick={() => {
+                    trackCTA({ cta_location: "footer", cta_text: "Contact", cta_action: "open_modal" });
+                    openModal();
+                  }}
                   className="text-cream/60 hover:text-gold text-sm transition-colors duration-300"
                 >
                   Contact
@@ -131,7 +135,10 @@ export function Footer() {
               </li>
               <li>
                 <button
-                  onClick={openModal}
+                  onClick={() => {
+                    trackCTA({ cta_location: "footer", cta_text: "Get in Touch", cta_action: "open_modal" });
+                    openModal();
+                  }}
                   className="flex items-center gap-3 text-cream/60 hover:text-gold text-sm transition-colors duration-300"
                 >
                   <Mail className="w-4 h-4 text-gold flex-shrink-0" aria-hidden="true" />

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check, Leaf, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContactModal } from "@/components/layout/contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 
 const beeswaxData = {
   title: "Organic Beeswax",
@@ -175,7 +176,10 @@ export function BeeswaxSection() {
 
             {/* CTA */}
             <Button
-              onClick={openModal}
+              onClick={() => {
+                trackCTA({ cta_location: "product_section", cta_text: "Inquire About Beeswax", cta_action: "open_modal" });
+                openModal();
+              }}
               className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-6 text-base transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
             >
               Inquire About Beeswax
@@ -196,7 +200,10 @@ export function BeeswaxSection() {
             <span className="text-cream/60 text-sm">
               Looking for other wax products or specifications?{" "}
               <button
-                onClick={openModal}
+                onClick={() => {
+                  trackCTA({ cta_location: "product_section", cta_text: "Contact us", cta_action: "open_modal" });
+                  openModal();
+                }}
                 className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors"
               >
                 Contact us

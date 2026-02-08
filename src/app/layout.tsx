@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ContactModalProvider } from "@/components/layout/contact-modal-context";
+import { AnalyticsProvider } from "@/lib/analytics";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -145,6 +146,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
+        <AnalyticsProvider>
         <ContactModalProvider>
           {/* Skip link for accessibility */}
           <a href="#main-content" className="skip-link">
@@ -157,6 +159,7 @@ export default function RootLayout({
 
           <Footer />
         </ContactModalProvider>
+        </AnalyticsProvider>
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useContactModal } from "./contact-modal-context";
+import { trackCTA } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -130,7 +131,10 @@ export function Navbar() {
             {/* CTA Button */}
             <div className="hidden md:block">
               <Button
-                onClick={openModal}
+                onClick={() => {
+                  trackCTA({ cta_location: "navbar", cta_text: "Contact Us", cta_action: "open_modal" });
+                  openModal();
+                }}
                 className="bg-gold hover:bg-gold-light text-black font-semibold px-8 py-3 text-base tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]"
               >
                 Contact Us
@@ -215,6 +219,7 @@ export function Navbar() {
               >
                 <Button
                   onClick={() => {
+                    trackCTA({ cta_location: "navbar", cta_text: "Contact Us", cta_action: "open_modal" });
                     setIsMobileMenuOpen(false);
                     openModal();
                   }}
