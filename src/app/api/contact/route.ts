@@ -14,6 +14,11 @@ interface ContactFormData {
 const MAX_FIELD_LENGTH = 200;
 const MAX_MESSAGE_LENGTH = 2000;
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const NAME_REGEX = /^[a-zA-Z\s\-'.]+$/;
+const COMPANY_REGEX = /^[a-zA-Z0-9\s\-'.,&()]+$/;
+const PHONE_REGEX = /^\(\d{3}\) \d{3}-\d{4}$/;
+const ALLOWED_PRODUCTS = ["beeswax", "honey", "both", "other"];
+const ALLOWED_VOLUMES = ["under-500kg", "500kg-1mt", "1mt-5mt", "over-5mt", "not-sure", ""];
 
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60_000; // 1 minute
@@ -77,6 +82,49 @@ export async function POST(request: NextRequest) {
     if (!EMAIL_REGEX.test(data.email) || data.email.length > MAX_FIELD_LENGTH) {
       return NextResponse.json(
         { error: "Invalid email format" },
+        { status: 400 }
+      );
+    }
+
+    // Validate field formats
+    if (!NAME_REGEX.test(data.fullName) || data.fullName.length > MAX_FIELD_LENGTH) {
+      return NextResponse.json(
+        { error: "Name contains invalid characters" },
+        { status: 400 }
+      );
+    }
+
+    if (!COMPANY_REGEX.test(data.companyName) || data.companyName.length > MAX_FIELD_LENGTH) {
+      return NextResponse.json(
+        { error: "Company name contains invalid characters" },
+        { status: 400 }
+      );
+    }
+
+    if (data.phone && !PHONE_REGEX.test(data.phone)) {
+      return NextResponse.json(
+        { error: "Phone must be a valid US number: (XXX) XXX-XXXX" },
+        { status: 400 }
+      );
+    }
+
+    if (!ALLOWED_PRODUCTS.includes(data.productInterest)) {
+      return NextResponse.json(
+        { error: "Invalid product selection" },
+        { status: 400 }
+      );
+    }
+
+    if (data.estimatedVolume && !ALLOWED_VOLUMES.includes(data.estimatedVolume)) {
+      return NextResponse.json(
+        { error: "Invalid volume selection" },
+        { status: 400 }
+      );
+    }
+
+    if (data.message && data.message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: "Message is too long" },
         { status: 400 }
       );
     }

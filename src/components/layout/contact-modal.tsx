@@ -152,13 +152,37 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     }
   };
 
+  const formatPhone = (value: string): string => {
+    const digits = value.replace(/\D/g, "").slice(0, 10);
+    if (digits.length === 0) return "";
+    if (digits.length <= 3) return `(${digits}`;
+    if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+
+    if (name === "fullName") {
+      const cleaned = value.replace(/[^a-zA-Z\s\-'.]/g, "");
+      setFormData((prev) => ({ ...prev, fullName: cleaned }));
+      return;
+    }
+
+    if (name === "companyName") {
+      const cleaned = value.replace(/[^a-zA-Z0-9\s\-'.,&()]/g, "");
+      setFormData((prev) => ({ ...prev, companyName: cleaned }));
+      return;
+    }
+
+    if (name === "phone") {
+      setFormData((prev) => ({ ...prev, phone: formatPhone(value) }));
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // WhatsApp link - replace with actual number
@@ -362,6 +386,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           name="fullName"
                           type="text"
                           required
+                          maxLength={100}
                           value={formData.fullName}
                           onChange={handleInputChange}
                           className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
@@ -377,6 +402,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           name="companyName"
                           type="text"
                           required
+                          maxLength={100}
                           value={formData.companyName}
                           onChange={handleInputChange}
                           className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
@@ -395,6 +421,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           name="email"
                           type="email"
                           required
+                          maxLength={200}
                           value={formData.email}
                           onChange={handleInputChange}
                           className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
@@ -412,7 +439,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="(555) 000-0000"
                         />
                       </div>
                     </div>
@@ -485,6 +512,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       <Textarea
                         id="message"
                         name="message"
+                        maxLength={2000}
                         value={formData.message}
                         onChange={handleInputChange}
                         className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold min-h-[100px] resize-none"
