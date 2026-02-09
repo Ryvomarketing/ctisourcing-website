@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-// TODO: Install and configure Resend
-// npm install resend
-// import { Resend } from 'resend';
-// const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 interface ContactFormData {
   fullName: string;
@@ -14,6 +10,14 @@ interface ContactFormData {
   estimatedVolume?: string;
   message?: string;
 }
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,39 +40,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Implement Resend email sending
-    // Uncomment and configure once Resend is set up:
-    /*
-    const { error } = await resend.emails.send({
-      from: 'CTI Sourcing <noreply@ctisourcing.com>',
-      to: ['sales@ctisourcing.com'],
+    await transporter.sendMail({
+      from: `CTI Sourcing <${process.env.GMAIL_USER}>`,
+      to: process.env.GMAIL_USER,
+      replyTo: data.email,
       subject: `New Quote Request from ${data.companyName}`,
       html: `
         <h2>New Quote Request</h2>
         <p><strong>Name:</strong> ${data.fullName}</p>
         <p><strong>Company:</strong> ${data.companyName}</p>
         <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+        <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
         <p><strong>Product Interest:</strong> ${data.productInterest}</p>
-        <p><strong>Estimated Volume:</strong> ${data.estimatedVolume || 'Not specified'}</p>
+        <p><strong>Estimated Volume:</strong> ${data.estimatedVolume || "Not specified"}</p>
         <p><strong>Message:</strong></p>
-        <p>${data.message || 'No message provided'}</p>
+        <p>${data.message || "No message provided"}</p>
       `,
     });
-
-    if (error) {
-      console.error('Resend error:', error);
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      );
-    }
-    */
-
-    // Log submissions in development only — never log PII in production
-    if (process.env.NODE_ENV === "development") {
-      console.log("Quote request received:", data);
-    }
 
     return NextResponse.json(
       { success: true, message: "Quote request received" },
