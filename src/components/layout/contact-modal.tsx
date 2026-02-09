@@ -124,19 +124,32 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call - replace with actual Resend integration
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    trackFormSubmit({
-      form_type: "inquiry",
-      product_interest: formData.productInterest || undefined,
-      estimated_volume: formData.estimatedVolume || undefined,
-      has_phone: !!formData.phone,
-      has_message: !!formData.message,
-    });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send");
+      }
 
-    setIsSubmitting(false);
-    setView("success");
+      trackFormSubmit({
+        form_type: "inquiry",
+        product_interest: formData.productInterest || undefined,
+        estimated_volume: formData.estimatedVolume || undefined,
+        has_phone: !!formData.phone,
+        has_message: !!formData.message,
+      });
+
+      setIsSubmitting(false);
+      setView("success");
+    } catch {
+      setIsSubmitting(false);
+      alert("Something went wrong. Please try again or contact us directly.");
+    }
   };
 
   const handleInputChange = (
