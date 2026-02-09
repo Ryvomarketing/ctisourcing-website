@@ -166,10 +166,30 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gold/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-cream/40 text-xs text-center md:text-left">
             &copy; {currentYear} CTI Sourcing. All rights reserved.
           </p>
+          <nav aria-label="Legal" className="flex items-center gap-6">
+            <Link
+              href="/privacy"
+              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/cookie-policy"
+              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+            >
+              Cookie Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+            >
+              Terms of Use
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
