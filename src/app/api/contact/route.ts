@@ -140,6 +140,7 @@ export async function POST(request: NextRequest) {
       message: data.message ? escapeHtml(truncate(data.message, MAX_MESSAGE_LENGTH)) : "No message provided",
     };
 
+    // Notification email to CTI Sourcing
     await transporter.sendMail({
       from: `CTI Sourcing <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -155,6 +156,114 @@ export async function POST(request: NextRequest) {
         <p><strong>Estimated Volume:</strong> ${safe.estimatedVolume}</p>
         <p><strong>Message:</strong></p>
         <p>${safe.message}</p>
+      `,
+    });
+
+    // Friendly labels for confirmation email
+    const productLabels: Record<string, string> = {
+      beeswax: "Organic Beeswax",
+      honey: "Organic Honey",
+      both: "Organic Beeswax & Honey",
+      other: "Other",
+    };
+    const volumeLabels: Record<string, string> = {
+      "under-500kg": "Under 500 kg",
+      "500kg-1mt": "500 kg – 1 MT",
+      "1mt-5mt": "1 MT – 5 MT",
+      "over-5mt": "Over 5 MT",
+      "not-sure": "Not sure yet",
+    };
+
+    const productDisplay = productLabels[data.productInterest] || safe.productInterest;
+    const volumeDisplay = data.estimatedVolume
+      ? (volumeLabels[data.estimatedVolume] || safe.estimatedVolume)
+      : "Not specified";
+
+    // Confirmation email to the submitter
+    await transporter.sendMail({
+      from: `CTI Sourcing <${process.env.GMAIL_USER}>`,
+      to: data.email,
+      subject: "We Received Your Quote Request — CTI Sourcing",
+      html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f4f4;padding:32px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;max-width:600px;width:100%;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background-color:#0A0A0A;padding:32px 40px;text-align:center;">
+            <img src="https://ctisourcing.com/images/ctisourcing%20logo%20no%20background.png" alt="CTI Sourcing" width="140" style="display:block;margin:0 auto 12px;" />
+            <h1 style="color:#D4A853;font-size:22px;margin:0;font-weight:700;letter-spacing:0.5px;">CTI Sourcing</h1>
+            <p style="color:#999999;font-size:13px;margin:6px 0 0;letter-spacing:1px;text-transform:uppercase;">Organic Beeswax &amp; Honey from Tanzania</p>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:36px 40px 24px;">
+            <p style="font-size:16px;color:#333333;margin:0 0 8px;">Dear ${safe.fullName},</p>
+            <p style="font-size:15px;color:#555555;line-height:1.6;margin:0 0 24px;">
+              Thank you for reaching out to CTI Sourcing. We have received your quote request and a member of our team will be in touch with you <strong>within 24 hours</strong>.
+            </p>
+
+            <h2 style="font-size:15px;color:#0A0A0A;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid #D4A853;">Your Inquiry Summary</h2>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+              <tr>
+                <td style="padding:8px 0;font-size:14px;color:#888888;width:140px;vertical-align:top;">Company</td>
+                <td style="padding:8px 0;font-size:14px;color:#333333;">${safe.companyName}</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 0;font-size:14px;color:#888888;vertical-align:top;">Product Interest</td>
+                <td style="padding:8px 0;font-size:14px;color:#333333;">${escapeHtml(productDisplay)}</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 0;font-size:14px;color:#888888;vertical-align:top;">Estimated Volume</td>
+                <td style="padding:8px 0;font-size:14px;color:#333333;">${escapeHtml(volumeDisplay)}</td>
+              </tr>
+              ${safe.message !== "No message provided" ? `
+              <tr>
+                <td style="padding:8px 0;font-size:14px;color:#888888;vertical-align:top;">Your Message</td>
+                <td style="padding:8px 0;font-size:14px;color:#333333;">${safe.message}</td>
+              </tr>` : ""}
+            </table>
+
+            <p style="font-size:14px;color:#555555;line-height:1.6;margin:0 0 4px;">
+              If you have any urgent questions in the meantime, feel free to reply directly to this email.
+            </p>
+          </td>
+        </tr>
+
+        <!-- Divider -->
+        <tr><td style="padding:0 40px;"><hr style="border:none;border-top:1px solid #e8e8e8;margin:0;" /></td></tr>
+
+        <!-- Signature -->
+        <tr>
+          <td style="padding:24px 40px 32px;">
+            <p style="font-size:14px;color:#333333;margin:0 0 4px;font-weight:600;">CTI Sourcing</p>
+            <p style="font-size:13px;color:#777777;margin:0 0 2px;">Organic Beeswax &amp; Honey — Direct from Tanzania</p>
+            <p style="font-size:13px;color:#777777;margin:0 0 2px;">
+              <a href="mailto:info@ctisourcing.com" style="color:#D4A853;text-decoration:none;">info@ctisourcing.com</a>
+            </p>
+            <p style="font-size:13px;margin:0;">
+              <a href="https://ctisourcing.com" style="color:#D4A853;text-decoration:none;">ctisourcing.com</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- Footer -->
+      <p style="font-size:11px;color:#aaaaaa;margin:16px 0 0;text-align:center;">
+        You received this email because a quote request was submitted from ctisourcing.com using this email address.
+      </p>
+    </td></tr>
+  </table>
+</body>
+</html>
       `,
     });
 
