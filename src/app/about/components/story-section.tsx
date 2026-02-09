@@ -90,7 +90,7 @@ export function StorySection() {
                 <div
                   className="aspect-[4/3] bg-cover bg-center"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=1200&auto=format&fit=crop')`,
+                    backgroundImage: `url('/images/about-us-image.png')`,
                   }}
                   role="img"
                   aria-label="Tanzanian landscape"
