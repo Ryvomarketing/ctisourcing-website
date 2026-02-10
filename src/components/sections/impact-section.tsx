@@ -91,7 +91,7 @@ export function ImpactSection() {
           >
             Sourcing That Makes a Difference
           </h2>
-          <p className="text-cream/70 max-w-2xl mx-auto">
+          <p className="text-cream/90 max-w-2xl mx-auto">
             When you choose CTI Sourcing, you&apos;re not just getting premium
             products—you&apos;re supporting sustainable livelihoods and protected
             ecosystems in Tanzania.
@@ -120,7 +120,7 @@ export function ImpactSection() {
                 {stat.number}
               </div>
               <div className="text-cream font-medium mb-1">{stat.label}</div>
-              <div className="text-cream/50 text-sm">{stat.description}</div>
+              <div className="text-cream/70 text-sm">{stat.description}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -144,7 +144,7 @@ export function ImpactSection() {
                   <h3 className="font-serif text-lg text-cream mb-2">
                     {pillar.title}
                   </h3>
-                  <p className="text-cream/60 text-sm leading-relaxed">
+                  <p className="text-cream/80 text-sm leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>
@@ -170,8 +170,8 @@ export function ImpactSection() {
             <footer className="mt-6">
               <cite className="not-italic">
                 <span className="text-gold font-medium">QVC Africa</span>
-                <span className="text-cream/50 mx-2">•</span>
-                <span className="text-cream/60">Tanzania</span>
+                <span className="text-cream/70 mx-2">•</span>
+                <span className="text-cream/80">Tanzania</span>
               </cite>
             </footer>
           </blockquote>

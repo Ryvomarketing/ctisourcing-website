@@ -65,7 +65,7 @@ export function ProductPreview() {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               className="group"
             >
-              <Link href={product.href} className="block">
+              <Link href={product.href} className="block" aria-label={`Learn more about ${product.title}`}>
                 <div className="relative overflow-hidden rounded-lg border border-gold/10 bg-black/50 hover:border-gold/30 transition-all duration-500">
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
@@ -90,7 +90,7 @@ export function ProductPreview() {
                     <h3 className="font-serif text-2xl text-cream mb-3 group-hover:text-gold transition-colors duration-300">
                       {product.title}
                     </h3>
-                    <p className="text-cream/60 text-sm leading-relaxed mb-4">
+                    <p className="text-cream/80 text-sm leading-relaxed mb-4">
                       {product.description}
                     </p>
 

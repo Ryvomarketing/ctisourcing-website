@@ -109,6 +109,7 @@ export function HoneySection() {
               </h4>
               <div className="bg-black/50 rounded-lg border border-gold/10 overflow-hidden">
                 <table className="w-full text-sm">
+                  <caption className="sr-only">Honey Specifications</caption>
                   <tbody>
                     {Object.entries(honeyData.specifications).map(
                       ([key, value], index) => (
@@ -116,7 +117,7 @@ export function HoneySection() {
                           key={key}
                           className={index !== 0 ? "border-t border-gold/10" : ""}
                         >
-                          <td className="px-4 py-3 text-cream/50 font-medium">
+                          <td className="px-4 py-3 text-cream/70 font-medium">
                             {key}
                           </td>
                           <td className="px-4 py-3 text-cream">{value}</td>

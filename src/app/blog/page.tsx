@@ -79,7 +79,7 @@ export default function BlogPage() {
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-cream mb-6">
               The CTI Blog
             </h1>
-            <p className="text-cream/70 text-lg max-w-2xl mx-auto">
+            <p className="text-cream/90 text-lg max-w-2xl mx-auto">
               Exploring sustainable sourcing, the science of bee products, and
               the communities behind our supply chain.
             </p>
@@ -100,7 +100,7 @@ export default function BlogPage() {
               Featured Article
             </span>
 
-            <Link href={`/blog/${featuredArticle.slug}`} className="group block">
+            <Link href={`/blog/${featuredArticle.slug}`} className="group block" aria-label={`Read full article: ${featuredArticle.title}`}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                 {/* Image */}
                 <div className="relative overflow-hidden rounded-lg border border-gold/20 group-hover:border-gold/40 transition-colors duration-300">
@@ -120,7 +120,7 @@ export default function BlogPage() {
 
                 {/* Content */}
                 <div className="flex flex-col justify-center">
-                  <div className="flex items-center gap-4 text-cream/50 text-sm mb-4">
+                  <div className="flex items-center gap-4 text-cream/70 text-sm mb-4">
                     <span className="flex items-center gap-1.5">
                       <Calendar className="w-4 h-4" aria-hidden="true" />
                       {featuredArticle.date}
@@ -135,7 +135,7 @@ export default function BlogPage() {
                     {featuredArticle.title}
                   </h2>
 
-                  <p className="text-cream/70 leading-relaxed mb-6">
+                  <p className="text-cream/90 leading-relaxed mb-6">
                     {featuredArticle.excerpt}
                   </p>
 
@@ -169,7 +169,7 @@ export default function BlogPage() {
                   Coming Soon
                 </h2>
               </div>
-              <div className="flex items-center gap-2 text-cream/50 text-sm">
+              <div className="flex items-center gap-2 text-cream/70 text-sm">
                 <Bell className="w-4 h-4" aria-hidden="true" />
                 <span>New articles published regularly</span>
               </div>
@@ -201,7 +201,7 @@ export default function BlogPage() {
                   <h3 className="font-serif text-xl text-cream mb-3">
                     {article.title}
                   </h3>
-                  <p className="text-cream/60 text-sm leading-relaxed">
+                  <p className="text-cream/80 text-sm leading-relaxed">
                     {article.description}
                   </p>
                 </div>

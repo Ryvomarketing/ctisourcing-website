@@ -31,7 +31,7 @@ export function CTABanner() {
             Let&apos;s talk about your{" "}
             <span className="text-gold">sourcing needs</span>
           </h2>
-          <p className="text-cream/70 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-cream/90 text-lg mb-8 max-w-2xl mx-auto">
             Every partnership starts with a conversation. Tell us what you&apos;re looking
             for and we&apos;ll find the right solution together.
           </p>

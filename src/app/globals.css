@@ -99,12 +99,12 @@
 
   /* Skip link for accessibility */
   .skip-link {
-    @apply absolute -top-10 left-4 z-[100] bg-gold text-black px-4 py-2 font-medium;
+    @apply absolute -top-10 left-4 z-[100] bg-gold text-black px-4 py-2 font-medium rounded;
     transition: top 0.2s ease;
   }
 
   .skip-link:focus {
-    @apply top-4;
+    @apply top-4 sm:top-4;
   }
 }
 
@@ -204,7 +204,7 @@
 
 /* Prose styles for blog articles */
 .prose {
-  @apply text-cream/80 leading-relaxed;
+  @apply text-cream/90 leading-relaxed;
 }
 
 .prose p {
@@ -237,7 +237,7 @@
 }
 
 .prose blockquote {
-  @apply border-l-2 border-gold/50 pl-6 italic text-cream/70 my-8;
+  @apply border-l-2 border-gold/50 pl-6 italic text-cream/80 my-8;
 }
 
 .prose strong {

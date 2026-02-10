@@ -155,6 +155,7 @@ export function BeeswaxSection() {
               </h4>
               <div className="bg-charcoal rounded-lg border border-gold/10 overflow-hidden">
                 <table className="w-full text-sm">
+                  <caption className="sr-only">Beeswax Specifications</caption>
                   <tbody>
                     {Object.entries(beeswaxData.specifications).map(
                       ([key, value], index) => (
@@ -162,7 +163,7 @@ export function BeeswaxSection() {
                           key={key}
                           className={index !== 0 ? "border-t border-gold/10" : ""}
                         >
-                          <td className="px-4 py-3 text-cream/50 font-medium">
+                          <td className="px-4 py-3 text-cream/70 font-medium">
                             {key}
                           </td>
                           <td className="px-4 py-3 text-cream">{value}</td>
@@ -197,7 +198,7 @@ export function BeeswaxSection() {
         >
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-charcoal/50 border border-cream/10 rounded-lg">
             <MessageCircle className="w-5 h-5 text-cream/50" aria-hidden="true" />
-            <span className="text-cream/60 text-sm">
+            <span className="text-cream/80 text-sm">
               Looking for other wax products or specifications?{" "}
               <button
                 onClick={() => {

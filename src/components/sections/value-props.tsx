@@ -74,7 +74,7 @@ export function ValueProps() {
                 <h3 className="font-serif text-xl text-cream mb-3 group-hover:text-gold transition-colors duration-300">
                   {prop.title}
                 </h3>
-                <p className="text-cream/60 leading-relaxed">
+                <p className="text-cream/80 leading-relaxed">
                   {prop.description}
                 </p>
               </div>

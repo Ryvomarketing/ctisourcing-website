@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContactModal } from "@/components/layout/contact-modal-context";
@@ -9,6 +9,7 @@ import Link from "next/link";
 
 export function Hero() {
   const { openModal } = useContactModal();
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
@@ -53,7 +54,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg sm:text-xl text-cream/70 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg sm:text-xl text-cream/90 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Direct sourcing from protected forest reserves. Certified organic,
           fully traceable, competitively priced. Your trusted supply partner.
@@ -91,15 +92,15 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={prefersReducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 1, delay: prefersReducedMotion ? 0 : 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-cream/40"
+          animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2 text-cream/70"
         >
           <span className="text-xs tracking-widest uppercase">Scroll</span>
           <ChevronDown className="w-5 h-5" aria-hidden="true" />

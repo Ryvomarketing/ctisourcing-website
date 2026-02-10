@@ -65,11 +65,11 @@ export function Footer() {
                 </div>
               </div>
             </Link>
-            <p className="text-cream/60 text-sm leading-relaxed mb-6">
+            <p className="text-cream/80 text-sm leading-relaxed mb-6">
               Premium beeswax and honey sourced from Tanzania&apos;s protected
               forests. Delivered from the US.
             </p>
-            <p className="text-gold/80 text-xs tracking-wide">
+            <p className="text-gold text-xs tracking-wide">
               Exclusive Partner of QVC Africa
             </p>
           </div>
@@ -82,7 +82,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-cream/60 hover:text-gold text-sm transition-colors duration-300"
+                    className="text-cream/80 hover:text-gold text-sm transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -94,7 +94,7 @@ export function Footer() {
                     trackCTA({ cta_location: "footer", cta_text: "Contact", cta_action: "open_modal" });
                     openModal();
                   }}
-                  className="text-cream/60 hover:text-gold text-sm transition-colors duration-300"
+                  className="text-cream/80 hover:text-gold text-sm transition-colors duration-300"
                 >
                   Contact
                 </button>
@@ -110,7 +110,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-cream/60 hover:text-gold text-sm transition-colors duration-300"
+                    className="text-cream/80 hover:text-gold text-sm transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -125,10 +125,10 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-gold mt-1 flex-shrink-0" aria-hidden="true" />
-                <span className="text-cream/60 text-sm">
+                <span className="text-cream/80 text-sm">
                   United States
                   <br />
-                  <span className="text-cream/40 text-xs">
+                  <span className="text-cream/70 text-xs">
                     Sourcing from Tanzania
                   </span>
                 </span>
@@ -139,7 +139,7 @@ export function Footer() {
                     trackCTA({ cta_location: "footer", cta_text: "Get in Touch", cta_action: "open_modal" });
                     openModal();
                   }}
-                  className="flex items-center gap-3 text-cream/60 hover:text-gold text-sm transition-colors duration-300"
+                  className="flex items-center gap-3 text-cream/80 hover:text-gold text-sm transition-colors duration-300"
                 >
                   <Mail className="w-4 h-4 text-gold flex-shrink-0" aria-hidden="true" />
                   Get in Touch
@@ -156,7 +156,7 @@ export function Footer() {
                 className="w-10 h-10 rounded"
                 loading="lazy"
               />
-              <p className="text-xs text-cream/40">
+              <p className="text-xs text-cream/70">
                 USDA/NOP & EU Organic Certified
               </p>
             </div>
@@ -167,25 +167,25 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-gold/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-cream/40 text-xs text-center md:text-left">
+          <p className="text-cream/70 text-xs text-center md:text-left">
             &copy; {currentYear} CTI Sourcing. All rights reserved.
           </p>
           <nav aria-label="Legal" className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+              className="text-cream/70 hover:text-gold text-xs transition-colors duration-300"
             >
               Privacy Policy
             </Link>
             <Link
               href="/cookie-policy"
-              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+              className="text-cream/70 hover:text-gold text-xs transition-colors duration-300"
             >
               Cookie Policy
             </Link>
             <Link
               href="/terms"
-              className="text-cream/40 hover:text-gold text-xs transition-colors duration-300"
+              className="text-cream/70 hover:text-gold text-xs transition-colors duration-300"
             >
               Terms of Use
             </Link>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   X,
   FileText,
@@ -37,8 +37,11 @@ type ModalView = "options" | "inquiry" | "success";
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [view, setView] = useState<ModalView>("options");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   // Form state
   const [formData, setFormData] = useState({
@@ -51,11 +54,44 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     message: "",
   });
 
+  const hasFormData = useCallback(() => {
+    return (
+      formData.fullName !== "" ||
+      formData.companyName !== "" ||
+      formData.email !== "" ||
+      formData.phone !== "" ||
+      formData.productInterest !== "" ||
+      formData.message !== ""
+    );
+  }, [formData]);
+
+  const handleClose = useCallback(() => {
+    if (view === "inquiry" && hasFormData()) {
+      const confirmed = window.confirm(
+        "You have unsaved form data. Are you sure you want to close?"
+      );
+      if (!confirmed) return;
+    }
+    onClose();
+    // Restore focus to the element that triggered the modal
+    setTimeout(() => {
+      triggerRef.current?.focus();
+    }, 100);
+  }, [view, hasFormData, onClose]);
+
+  // Store the triggering element when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement;
+    }
+  }, [isOpen]);
+
   // Reset state when modal closes
   useEffect(() => {
     if (!isOpen) {
       setTimeout(() => {
         setView("options");
+        setFormError(null);
         setFormData({
           fullName: "",
           companyName: "",
@@ -82,7 +118,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        handleClose();
       }
 
       if (e.key === "Tab" && modalRef.current) {
@@ -106,7 +142,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, handleClose]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -123,6 +159,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFormError(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -146,9 +183,13 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
       setIsSubmitting(false);
       setView("success");
-    } catch {
+    } catch (err) {
       setIsSubmitting(false);
-      alert("Something went wrong. Please try again or contact us directly.");
+      setFormError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or contact us directly."
+      );
     }
   };
 
@@ -192,6 +233,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   // Calendar link - replace with actual link
   const calendarLink = "https://cal.com/ctisourcing/consultation"; // TODO: Replace with actual Cal.com link
 
+  const motionProps = prefersReducedMotion
+    ? { initial: false, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0 } }
+    : {};
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -206,19 +251,19 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-            onClick={onClose}
+            onClick={handleClose}
             aria-hidden="true"
           />
 
           {/* Modal */}
           <motion.div
             ref={modalRef}
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.3, ease: "easeOut" }}
             className="relative w-full max-w-lg bg-black border border-gold/30 rounded-lg shadow-[0_0_60px_rgba(212,168,83,0.1)] overflow-hidden"
           >
             {/* Gold accent line */}
@@ -230,7 +275,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {view !== "options" && view !== "success" && (
                   <button
                     onClick={() => setView("options")}
-                    className="p-1 text-cream/60 hover:text-cream transition-colors"
+                    className="p-1 text-cream/80 hover:text-cream transition-colors focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded"
                     aria-label="Go back to options"
                   >
                     <ArrowLeft className="w-5 h-5" />
@@ -247,8 +292,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </div>
               <button
                 ref={closeButtonRef}
-                onClick={onClose}
-                className="p-2 text-cream/60 hover:text-cream transition-colors rounded-lg hover:bg-white/5"
+                onClick={handleClose}
+                className="p-2 text-cream/80 hover:text-cream transition-colors rounded-lg hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
@@ -262,13 +307,16 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {view === "options" && (
                   <motion.div
                     key="options"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.2 }}
+                    {...motionProps}
+                    {...(!prefersReducedMotion && {
+                      initial: { opacity: 0, x: -20 },
+                      animate: { opacity: 1, x: 0 },
+                      exit: { opacity: 0, x: 20 },
+                      transition: { duration: 0.2 },
+                    })}
                     className="space-y-4"
                   >
-                    <p className="text-cream/60 text-sm mb-6">
+                    <p className="text-cream/80 text-sm mb-6">
                       Choose how you&apos;d like to connect with us.
                     </p>
 
@@ -278,7 +326,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         trackCTA({ cta_location: "modal", cta_text: "Send an Inquiry", cta_action: "open_modal" });
                         setView("inquiry");
                       }}
-                      className="w-full group p-5 border border-gold/30 rounded-lg hover:border-gold hover:bg-gold/5 transition-all duration-300 text-left"
+                      className="w-full group p-5 border border-gold/30 rounded-lg hover:border-gold hover:bg-gold/5 transition-all duration-300 text-left focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     >
                       <div className="flex items-start gap-4">
                         <div className="p-3 rounded-lg bg-gold/10 text-gold group-hover:bg-gold group-hover:text-black transition-colors duration-300">
@@ -288,7 +336,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           <h3 className="font-medium text-cream group-hover:text-gold transition-colors">
                             Send an Inquiry
                           </h3>
-                          <p className="text-sm text-cream/50 mt-1">
+                          <p className="text-sm text-cream/70 mt-1">
                             Tell us about your needs. We&apos;ll respond within
                             24 hours.
                           </p>
@@ -302,7 +350,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackCTA({ cta_location: "modal", cta_text: "Quick Question", cta_action: "external" })}
-                      className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block"
+                      className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      aria-label="Quick Question — chat with us on WhatsApp (opens in a new tab)"
                     >
                       <div className="flex items-start gap-4">
                         <div className="p-3 rounded-lg bg-forest/30 text-forest-light">
@@ -312,7 +361,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           <h3 className="font-medium text-cream group-hover:text-cream transition-colors">
                             Quick Question
                           </h3>
-                          <p className="text-sm text-cream/50 mt-1">
+                          <p className="text-sm text-cream/70 mt-1">
                             Chat with us on WhatsApp for fast answers.
                           </p>
                         </div>
@@ -325,7 +374,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackCTA({ cta_location: "modal", cta_text: "Schedule a Call", cta_action: "external" })}
-                      className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block"
+                      className="w-full group p-5 border border-gold/20 rounded-lg hover:border-gold/50 hover:bg-white/5 transition-all duration-300 text-left block focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      aria-label="Schedule a Call — book a time on Cal.com (opens in a new tab)"
                     >
                       <div className="flex items-start gap-4">
                         <div className="p-3 rounded-lg bg-forest/30 text-forest-light">
@@ -335,7 +385,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           <h3 className="font-medium text-cream group-hover:text-cream transition-colors">
                             Schedule a Call
                           </h3>
-                          <p className="text-sm text-cream/50 mt-1">
+                          <p className="text-sm text-cream/70 mt-1">
                             Book a time that works for you.
                           </p>
                         </div>
@@ -344,18 +394,18 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     {/* Direct Contact Info */}
                     <div className="mt-6 pt-6 border-t border-gold/10">
-                      <p className="text-xs text-cream/40 mb-3">Or reach us directly</p>
+                      <p className="text-xs text-cream/70 mb-3">Or reach us directly</p>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a
                           href="mailto:info@ctisourcing.com"
-                          className="flex items-center gap-2 text-cream/60 hover:text-gold text-sm transition-colors"
+                          className="flex items-center gap-2 text-cream/80 hover:text-gold text-sm transition-colors"
                         >
                           <Mail className="w-4 h-4" aria-hidden="true" />
                           info@ctisourcing.com
                         </a>
                         <a
                           href="tel:+1234567890"
-                          className="flex items-center gap-2 text-cream/60 hover:text-gold text-sm transition-colors"
+                          className="flex items-center gap-2 text-cream/80 hover:text-gold text-sm transition-colors"
                         >
                           <Phone className="w-4 h-4" aria-hidden="true" />
                           +1 (234) 567-890
@@ -369,43 +419,64 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {view === "inquiry" && (
                   <motion.form
                     key="inquiry"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.2 }}
+                    {...motionProps}
+                    {...(!prefersReducedMotion && {
+                      initial: { opacity: 0, x: 20 },
+                      animate: { opacity: 1, x: 0 },
+                      exit: { opacity: 0, x: -20 },
+                      transition: { duration: 0.2 },
+                    })}
                     onSubmit={handleSubmit}
                     className="space-y-5"
+                    noValidate
                   >
+                    {/* Error banner */}
+                    {formError && (
+                      <div
+                        role="alert"
+                        className="p-3 bg-red-900/30 border border-red-500/50 rounded-lg text-red-300 text-sm"
+                      >
+                        {formError}
+                      </div>
+                    )}
+
+                    {/* Status announcements for screen readers */}
+                    <div aria-live="polite" aria-atomic="true" className="sr-only">
+                      {isSubmitting && "Sending your request..."}
+                    </div>
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="fullName" className="text-cream/80">
-                          Full Name <span className="text-gold">*</span>
+                        <Label htmlFor="fullName" className="text-cream/90">
+                          Full Name <span aria-hidden="true" className="text-gold">*</span>
                         </Label>
                         <Input
                           id="fullName"
                           name="fullName"
                           type="text"
                           required
+                          aria-required="true"
                           maxLength={100}
                           value={formData.fullName}
                           onChange={handleInputChange}
-                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/40 focus:border-gold"
                           placeholder="John Smith"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="companyName" className="text-cream/80">
-                          Company Name <span className="text-gold">*</span>
+                        <Label htmlFor="companyName" className="text-cream/90">
+                          Company Name <span aria-hidden="true" className="text-gold">*</span>
                         </Label>
                         <Input
                           id="companyName"
                           name="companyName"
                           type="text"
                           required
+                          aria-required="true"
                           maxLength={100}
                           value={formData.companyName}
                           onChange={handleInputChange}
-                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/40 focus:border-gold"
                           placeholder="Acme Corp"
                         />
                       </div>
@@ -413,24 +484,25 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-cream/80">
-                          Email <span className="text-gold">*</span>
+                        <Label htmlFor="email" className="text-cream/90">
+                          Email <span aria-hidden="true" className="text-gold">*</span>
                         </Label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
                           required
+                          aria-required="true"
                           maxLength={200}
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/40 focus:border-gold"
                           placeholder="john@company.com"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-cream/80">
-                          Phone <span className="text-cream/40">(optional)</span>
+                        <Label htmlFor="phone" className="text-cream/90">
+                          Phone <span className="text-cream/60">(optional)</span>
                         </Label>
                         <Input
                           id="phone"
@@ -438,7 +510,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           type="tel"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold"
+                          className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/40 focus:border-gold"
                           placeholder="(555) 000-0000"
                         />
                       </div>
@@ -446,8 +518,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="productInterest" className="text-cream/80">
-                          Product Interest <span className="text-gold">*</span>
+                        <Label htmlFor="productInterest" className="text-cream/90">
+                          Product Interest <span aria-hidden="true" className="text-gold">*</span>
                         </Label>
                         <Select
                           value={formData.productInterest}
@@ -458,8 +530,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             }))
                           }
                           required
+                          aria-required="true"
                         >
-                          <SelectTrigger className="bg-white/5 border-gold/20 text-cream focus:border-gold">
+                          <SelectTrigger
+                            className="bg-white/5 border-gold/20 text-cream focus:border-gold"
+                            aria-label="Product Interest"
+                          >
                             <SelectValue placeholder="Select product" />
                           </SelectTrigger>
                           <SelectContent className="bg-black border-gold/20 z-[200]">
@@ -479,7 +555,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="estimatedVolume" className="text-cream/80">
+                        <Label htmlFor="estimatedVolume" className="text-cream/90">
                           Estimated Volume
                         </Label>
                         <Select
@@ -491,7 +567,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             }))
                           }
                         >
-                          <SelectTrigger className="bg-white/5 border-gold/20 text-cream focus:border-gold">
+                          <SelectTrigger
+                            className="bg-white/5 border-gold/20 text-cream focus:border-gold"
+                            aria-label="Estimated Volume"
+                          >
                             <SelectValue placeholder="Select volume" />
                           </SelectTrigger>
                           <SelectContent className="bg-black border-gold/20 z-[200]">
@@ -506,7 +585,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-cream/80">
+                      <Label htmlFor="message" className="text-cream/90">
                         Message / Requirements
                       </Label>
                       <Textarea
@@ -515,7 +594,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         maxLength={2000}
                         value={formData.message}
                         onChange={handleInputChange}
-                        className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/30 focus:border-gold min-h-[100px] resize-none"
+                        className="bg-white/5 border-gold/20 text-cream placeholder:text-cream/40 focus:border-gold min-h-[100px] resize-none"
                         placeholder="Tell us about your specific needs, timeline, or any questions..."
                       />
                     </div>
@@ -524,15 +603,16 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full bg-gold hover:bg-gold-light text-black font-medium py-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,168,83,0.3)] disabled:opacity-50"
+                      aria-busy={isSubmitting}
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
                           Sending...
                         </>
                       ) : (
                         <>
-                          <Send className="w-4 h-4 mr-2" />
+                          <Send className="w-4 h-4 mr-2" aria-hidden="true" />
                           Send Request
                         </>
                       )}
@@ -544,11 +624,16 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {view === "success" && (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
+                    {...motionProps}
+                    {...(!prefersReducedMotion && {
+                      initial: { opacity: 0, scale: 0.95 },
+                      animate: { opacity: 1, scale: 1 },
+                      exit: { opacity: 0, scale: 0.95 },
+                      transition: { duration: 0.3 },
+                    })}
                     className="text-center py-8"
+                    role="status"
+                    aria-live="polite"
                   >
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-forest/20 text-forest-light mb-6">
                       <CheckCircle className="w-8 h-8" aria-hidden="true" />
@@ -556,12 +641,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     <h3 className="font-serif text-xl text-cream mb-3">
                       Thank You!
                     </h3>
-                    <p className="text-cream/60 mb-6">
+                    <p className="text-cream/80 mb-6">
                       We&apos;ve received your request and will get back to you
                       within 24 hours.
                     </p>
                     <Button
-                      onClick={onClose}
+                      onClick={handleClose}
                       className="bg-gold hover:bg-gold-light text-black font-medium px-8"
                     >
                       Close
