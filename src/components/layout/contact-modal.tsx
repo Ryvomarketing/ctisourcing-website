@@ -227,7 +227,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   };
 
   // WhatsApp link - replace with actual number
-  const whatsappNumber = "1234567890"; // TODO: Replace with actual number
+  const whatsappNumber = "13852423955";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi%20CTI%20Sourcing%2C%20I%27m%20interested%20in%20your%20products.`;
 
   // Calendar link - replace with actual link
@@ -404,11 +404,11 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                           info@ctisourcing.com
                         </a>
                         <a
-                          href="tel:+1234567890"
+                          href="tel:+13852423955"
                           className="flex items-center gap-2 text-cream/80 hover:text-gold text-sm transition-colors"
                         >
                           <Phone className="w-4 h-4" aria-hidden="true" />
-                          +1 (234) 567-890
+                          +1 (385) 242-3955
                         </a>
                       </div>
                     </div>
